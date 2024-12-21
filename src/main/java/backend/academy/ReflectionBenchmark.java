@@ -27,7 +27,9 @@ public class ReflectionBenchmark {
 
         method = Student.class.getMethod(functionName);
 
-        methodHandle = MethodHandles.lookup().findVirtual(Student.class, functionName, MethodType.methodType(String.class));
+        methodHandle = MethodHandles.lookup().findVirtual(Student.class,
+            functionName,
+            MethodType.methodType(String.class));
 
         methodHandleLambda = (Supplier<String>) LambdaMetafactory.metafactory(
             MethodHandles.lookup(),
