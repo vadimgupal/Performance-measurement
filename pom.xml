@@ -481,6 +481,12 @@
                         <proc>full</proc>
                         <annotationProcessorPaths>
                             <path>
+                                <groupId>org.openjdk.jmh</groupId>
+                                <artifactId>jmh-generator-annprocess</artifactId>
+                                <version>${jmh.version}</version>
+                            </path>
+
+                            <path>
                                 <groupId>org.mapstruct</groupId>
                                 <artifactId>mapstruct-processor</artifactId>
                                 <version>${org.mapstruct.version}</version>
