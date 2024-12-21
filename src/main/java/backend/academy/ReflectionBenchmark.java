@@ -1,10 +1,5 @@
 package backend.academy;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.infra.Blackhole;
 import java.lang.invoke.LambdaMetafactory;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -12,6 +7,11 @@ import java.lang.invoke.MethodType;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.function.Supplier;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.infra.Blackhole;
 
 @State(Scope.Thread)
 public class ReflectionBenchmark {
@@ -22,16 +22,12 @@ public class ReflectionBenchmark {
 
     @Setup
     public void setup() throws Throwable {
+        String functionName = "name";
         student = new Student("Alexander", "Biryukov");
 
-        // Прямой доступ
-        // Прямой доступ к полям через метод Student#name()
+        method = Student.class.getMethod(functionName);
 
-        // Рефлексия
-        method = Student.class.getMethod("name");
-
-        // MethodHandles
-        methodHandle = MethodHandles.lookup().findVirtual(Student.class, "name", MethodType.methodType(String.class));
+        methodHandle = MethodHandles.lookup().findVirtual(Student.class, functionName, MethodType.methodType(String.class));
 
         methodHandleLambda = (Supplier<String>) LambdaMetafactory.metafactory(
             MethodHandles.lookup(),

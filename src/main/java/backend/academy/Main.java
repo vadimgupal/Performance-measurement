@@ -1,5 +1,6 @@
 package backend.academy;
 
+import java.util.concurrent.TimeUnit;
 import lombok.experimental.UtilityClass;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.runner.Runner;
@@ -7,8 +8,8 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.openjdk.jmh.runner.options.TimeValue;
-import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("MagicNumber")
 @UtilityClass
 public class Main {
     public static void main(String[] args) throws RunnerException {
